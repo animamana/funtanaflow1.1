@@ -4313,7 +4313,7 @@
 
 		#footer input[type="checkbox"] + label,
 		#footer input[type="radio"] + label {
-			color: #fdd1d1;
+			color: #ffffff;
 		}
 
 			#footer input[type="checkbox"] + label:before,
@@ -4336,23 +4336,23 @@
 		}
 
 		#footer ::-webkit-input-placeholder {
-			color: #fbb5b5 !important;
+			color: #ffffff !important;
 		}
 
 		#footer :-moz-placeholder {
-			color: #fbb5b5 !important;
+			color: #ffffff !important;
 		}
 
 		#footer ::-moz-placeholder {
-			color: #fbb5b5 !important;
+			color: #ffffff !important;
 		}
 
 		#footer :-ms-input-placeholder {
-			color: #fbb5b5 !important;
+			color: #ffffff !important;
 		}
 
 		#footer .formerize-placeholder {
-			color: #fbb5b5 !important;
+			color: #ffffff !important;
 		}
 
 		#footer ul.alt li {
@@ -4360,7 +4360,7 @@
 		}
 
 		#footer header p {
-			color: #fbb5b5;
+			color: #ffffff;
 		}
 
 		#footer table tbody tr {
