@@ -84,28 +84,132 @@
 			</footer><div class="copyright">
 			Funtana Flow <a href="https://templated.co/">info@funtanaflow.com viale Tharros 166, Funtana Meiga, Cabras, OR  +39 3792842441</a>
 		</div>
-		<div id="cookie-banner" role="alert" aria-live="polite">
-    Questo sito utilizza solo cookie tecnici necessari al funzionamento. <a href="/cookie-policy" target="_blank" rel="noopener">Maggiori informazioni</a>.
-    <button id="cookie-ok-btn">OK, ho capito</button>
+ <!-- Overlay -->
+  <div id="cookie-overlay"></div>
+  <!-- Popup Modal -->
+  <div id="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
+    <h2 id="cookie-title">Preferenze Cookie</h2>
+    <p>Utilizziamo i cookie per personalizzare contenuti e annunci, fornire funzionalità dei social media e analizzare il nostro traffico. <a href="/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a></p>
+    <form id="cookie-form">
+      <label>
+        <input type="checkbox" checked disabled>
+        <strong>Cookie tecnici (obbligatori)</strong>
+      </label>
+      <label>
+        <input type="checkbox" id="cookie-analytics">
+        Cookie analitici (Google Analytics, ecc.)
+      </label>
+      <label>
+        <input type="checkbox" id="cookie-marketing">
+        Cookie di marketing (remarketing, pixel, social)
+      </label>
+      <div class="actions">
+        <button type="button" class="accept-all">Accetta tutti</button>
+        <button type="button" class="reject-all">Rifiuta tutti</button>
+        <button type="submit" class="save">Salva preferenze</button>
+      </div>
+    </form>
   </div>
-		<!-- Scripts -->
-			<script>
-    // Chiave per il localStorage
-    const COOKIE_TECH_KEY = "cookie_tech_ack";
-    const banner = document.getElementById('cookie-banner');
-    const btnOK = document.getElementById('cookie-ok-btn');
+  <!-- Bottone per riaprire le preferenze -->
+  <button id="cookie-settings-btn" title="Modifica preferenze cookie" aria-label="Modifica preferenze cookie">🍪</button>
 
-    // Mostra banner solo se non già accettato
+  <div style="padding:60px 20px 100px 20px;">
+    <h1>Benvenuto!</h1>
+    <p>Questo è un esempio di cookie banner MODALE conforme al GDPR.</p>
+  </div>
+		
+		<!-- Scripts -->
+		 <script>
+    const COOKIE_KEY = "cookie_preferences_v1";
+    const banner = document.getElementById('cookie-banner');
+    const overlay = document.getElementById('cookie-overlay');
+    const btnSettings = document.getElementById('cookie-settings-btn');
+    const analyticsBox = document.getElementById('cookie-analytics');
+    const marketingBox = document.getElementById('cookie-marketing');
+    const form = document.getElementById('cookie-form');
+
+    function showBanner() {
+      banner.classList.add('show');
+      overlay.classList.add('show');
+      btnSettings.style.display = 'none';
+      banner.focus();
+      // Blocca lo scroll del body
+      document.body.style.overflow = 'hidden';
+    }
+    function hideBanner() {
+      banner.classList.remove('show');
+      overlay.classList.remove('show');
+      btnSettings.style.display = 'block';
+      document.body.style.overflow = '';
+    }
+
+    function loadPrefs() {
+      let prefs = {};
+      try {
+        prefs = JSON.parse(localStorage.getItem(COOKIE_KEY)) || {};
+      } catch(e) {}
+      analyticsBox.checked = prefs.analytics || false;
+      marketingBox.checked = prefs.marketing || false;
+      return prefs;
+    }
+    function savePrefs(analytics, marketing) {
+      localStorage.setItem(COOKIE_KEY, JSON.stringify({
+        analytics: !!analytics,
+        marketing: !!marketing,
+        date: new Date().toISOString()
+      }));
+      applyCookiePrefs();
+    }
+    function applyCookiePrefs() {
+      const prefs = loadPrefs();
+      // Esempio: Google Analytics
+      if (prefs.analytics) {
+        if (!window.GA_LOADED) {
+          window.GA_LOADED = true;
+          // Inserisci qui il codice di Google Analytics solo se analytics è true
+        }
+      }
+      // Esempio: Marketing Pixel
+      if (prefs.marketing) {
+        if (!window.FB_PIXEL_LOADED) {
+          window.FB_PIXEL_LOADED = true;
+          // Inserisci qui il codice di Facebook Pixel solo se marketing è true
+        }
+      }
+    }
+
+    form.onsubmit = function(e) {
+      e.preventDefault();
+      savePrefs(analyticsBox.checked, marketingBox.checked);
+      hideBanner();
+    };
+    form.querySelector('.accept-all').onclick = function() {
+      analyticsBox.checked = true;
+      marketingBox.checked = true;
+      savePrefs(true, true);
+      hideBanner();
+    };
+    form.querySelector('.reject-all').onclick = function() {
+      analyticsBox.checked = false;
+      marketingBox.checked = false;
+      savePrefs(false, false);
+      hideBanner();
+    };
+    btnSettings.onclick = showBanner;
+
+    overlay.onclick = function() {
+      // Non chiudere cliccando fuori per obbligo consenso esplicito
+    };
+
     window.addEventListener('DOMContentLoaded', function() {
-      if (!localStorage.getItem(COOKIE_TECH_KEY)) {
-        banner.classList.add('show');
+      const prefs = loadPrefs();
+      if (prefs.date) {
+        hideBanner();
+        applyCookiePrefs();
+      } else {
+        showBanner();
       }
     });
-
-    // Al click su OK, nascondi e ricorda scelta
-    btnOK.onclick = function() {
-      localStorage.setItem(COOKIE_TECH_KEY, "1");
-      banner.classList.remove('show');
-    };
   </script>
+			
 		<script src="assets/js/jquery.min.js"></script><script src="assets/js/jquery.scrolly.min.js"></script><script src="assets/js/jquery.scrollex.min.js"></script><script src="assets/js/skel.min.js"></script><script src="assets/js/util.js"></script><script src="assets/js/main.js"></script></body></html>
