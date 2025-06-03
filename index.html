@@ -6,7 +6,49 @@
 --><html>
 	<head>
 		<title>Funtana Flow</title> <meta name="description" content="Sport, relax e natura nella Penisola del Sinis! Funtana Flow offre kitesurf, escursioni, noleggio attrezzature a Funtana Meiga. Scopri di più"><meta charset="utf-8"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="assets/css/main.css">
-
+ <style>
+    #cookie-overlay {
+      position: fixed;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.5);
+      z-index: 9998;
+      display: none;
+    }
+    #cookie-banner {
+      position: fixed;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      color: #222;
+      padding: 24px 30px 18px 30px;
+      border-radius: 14px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+      font-family: Arial, sans-serif;
+      font-size: 1.05em;
+      z-index: 9999;
+      max-width: 96vw;
+      min-width: 280px;
+      display: none;
+      text-align: center;
+    }
+    #cookie-banner.show, #cookie-overlay.show { display: block; }
+    #cookie-banner a { color: #1976d2; text-decoration: underline; }
+    #cookie-banner button {
+      margin-top: 16px;
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 28px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    @media (max-width: 540px) {
+      #cookie-banner { font-size: 0.97em; padding: 18px 5vw 12px 5vw; }
+      #cookie-banner button { padding: 7px 16px; }
+    }
+  </style>
 </head>
 	<body>
 
