@@ -4183,7 +4183,7 @@
 
 	#footer {
 		background-color: #7dcdf5;
-		color: #fdd1d1;
+		color: #ffffff;
 		padding: 6em 0 4em 0;
 		background: #7dcdf5;
 	}
@@ -4282,7 +4282,7 @@
 			#footer button.special,
 			#footer .button.special {
 				background-color: #ffffff;
-				color: #F64747 !important;
+				color: #FFFFFF !important;
 			}
 
 		#footer label {
