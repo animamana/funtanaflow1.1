@@ -1815,7 +1815,7 @@
 /* Box */
 
 	.box {
-		background: rgba(0, 0, 0, 0.5);
+		background: transparent;
 		border-radius: 4px;
 		margin-bottom: 2em;
 		overflow: hidden;
@@ -1834,7 +1834,7 @@
 		}
 
 		.box header p {
-			color: rgba(255, 255, 255, 0.5);
+			color: transparent;
 		}
 
 		.box.alt {
