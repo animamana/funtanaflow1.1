@@ -2,10 +2,9 @@
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Lobster|Open+Sans:300,400,600,700,800");
 
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Indie+Flower&family=Quicksand:wght@300..700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&display=swap');
 Road Trip by TEMPLATED
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
@@ -1694,12 +1693,12 @@ Road Trip by TEMPLATED
 	p {  
 
   
-.quicksand-<uniquifier> {
-  font-family: "Quicksand", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
+.sniglet-regular {
+  font-family: "Sniglet", system-ui;
+  font-weight: 400;
   font-style: normal;
-}
+
+
 
 		margin: 0 0 2em 0;
 	}
@@ -1707,10 +1706,15 @@ Road Trip by TEMPLATED
 	h1, h2, h3, h4, h5, h6 {
 		
 
-  font-family: "Quicksand", sans-serif;
-  font-optical-sizing: auto;
+ 
 
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  
   font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+
 
 		font-weight: 600;
 		line-height: 1.5;
