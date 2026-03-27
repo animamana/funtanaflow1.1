@@ -1,6 +1,11 @@
 <?php
+session_start();
+$lang = (isset($_GET['lang']) ? strtolower($_GET['lang']) : 'en');
+if (!in_array($lang, ['en', 'it', 'de'])) $lang = 'en';
+require_once __DIR__ . '/includes/config.php';
+include __DIR__ . '/includes/header.php';
+
 // Multilingual support for Stand Up Paddle Activity
-$language = $_GET['lang'] ?? 'it'; // Default language is Italian
 
 $texts = [
     'it' => [
@@ -20,7 +25,13 @@ $texts = [
     ],
 ];
 
-echo "<h1>" . $texts[$language]['title'] . "</h1>";
-echo "<p>" . $texts[$language]['description'] . "</p>";
-echo "<p>" . $texts[$language]['lessons'] . "</p>";
+$content = isset($texts[$lang]) ? $texts[$lang] : $texts['en'];
+?>
+<main>
+    <h1><?php echo $content['title']; ?></h1>
+    <p><?php echo $content['description']; ?></p>
+    <p><?php echo $content['lessons']; ?></p>
+</main>
+<?php
+require_once __DIR__ . '/includes/footer.php';
 ?>

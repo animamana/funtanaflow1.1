@@ -1,1 +1,45 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Events</title>\n</head>\n<body>\n    <h1>Events</h1>\n    <h2>English</h2>\n    <ul>\n        <li>Summer Camp</li>\n        <li>Night SUP</li>\n        <li>Kayak Tour</li>\n        <li>Kite Competition</li>\n    </ul>\n    <h2>Italiano</h2>\n    <ul>\n        <li>Campo Estivo</li>\n        <li>SUP Notturno</li>\n        <li>Tour in Kayak</li>\n        <li>Competizione di Aquiloni</li>\n    </ul>\n    <h2>Deutsch</h2>\n    <ul>\n        <li>Sommercamp</li>\n        <li>Nacht SUP</li>\n        <li>Kajak Tour</li>\n        <li>Drachenwettbewerb</li>\n    </ul>\n</body>\n</html>
+<?php
+session_start();
+$lang = (isset($_GET['lang']) ? strtolower($_GET['lang']) : 'en');
+if (!in_array($lang, ['en', 'it', 'de'])) $lang = 'en';
+require_once __DIR__ . '/includes/config.php';
+include __DIR__ . '/includes/header.php';
+
+$translations = [
+    'en' => [
+        'title' => 'Events',
+        'summer_camp' => 'Summer Camp',
+        'night_sup' => 'Night SUP',
+        'kayak_tour' => 'Kayak Tour',
+        'kite_competition' => 'Kite Competition',
+    ],
+    'it' => [
+        'title' => 'Eventi',
+        'summer_camp' => 'Campo Estivo',
+        'night_sup' => 'SUP Notturno',
+        'kayak_tour' => 'Tour in Kayak',
+        'kite_competition' => 'Competizione di Aquiloni',
+    ],
+    'de' => [
+        'title' => 'Veranstaltungen',
+        'summer_camp' => 'Sommercamp',
+        'night_sup' => 'Nacht SUP',
+        'kayak_tour' => 'Kajak Tour',
+        'kite_competition' => 'Drachenwettbewerb',
+    ],
+];
+
+$t = $translations[$lang] ?? $translations['en'];
+?>
+<main>
+    <h1><?php echo $t['title']; ?></h1>
+    <ul>
+        <li><?php echo $t['summer_camp']; ?></li>
+        <li><?php echo $t['night_sup']; ?></li>
+        <li><?php echo $t['kayak_tour']; ?></li>
+        <li><?php echo $t['kite_competition']; ?></li>
+    </ul>
+</main>
+<?php
+require_once __DIR__ . '/includes/footer.php';
+?>
