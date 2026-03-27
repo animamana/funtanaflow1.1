@@ -1,13 +1,11 @@
 <?php
-// Set default language
-$lang = 'EN'; // default language
-if (isset($_GET['lang'])) {
-    $lang = $_GET['lang']; // retrieve language from URL
-}
-
-// Translations
+session_start();
+$lang = (isset($_GET['lang']) ? strtolower($_GET['lang']) : 'en');
+if (!in_array($lang, ['en','it','de'])) $lang = 'en';
+require_once __DIR__.'/includes/config.php';
+include __DIR__.'/includes/header.php';
 $translations = [
-    'IT' => [
+    'it' => [
         'title' => 'Contatti',
         'name' => 'Nome',
         'email' => 'Email',
@@ -15,7 +13,7 @@ $translations = [
         'send' => 'Invia',
         'contact_info' => 'Informazioni di Contatto',
     ],
-    'EN' => [
+    'en' => [
         'title' => 'Contact',
         'name' => 'Name',
         'email' => 'Email',
@@ -23,7 +21,7 @@ $translations = [
         'send' => 'Send',
         'contact_info' => 'Contact Information',
     ],
-    'DE' => [
+    'de' => [
         'title' => 'Kontakt',
         'name' => 'Name',
         'email' => 'Email',
@@ -32,43 +30,27 @@ $translations = [
         'contact_info' => 'Kontaktinformationen',
     ],
 ];
-
-// Contact Information
-$contactEmail = "contact@example.com"; // Update with actual email
-$contactPhone = "+123456789"; // Update with actual phone
-$contactAddress = "123 Address St, City, Country"; // Update with actual address
+$t = $translations[$lang];
+$contactEmail = "contact@example.com"; // put your real email
+$contactPhone = "+123456789"; // put your real phone
+$contactAddress = "123 Address St, City, Country"; // put your real address
 ?>
-
-<!DOCTYPE html>
-<html lang="<?php echo strtolower($lang); ?>">
-<head>
-    <meta charset="UTF-8">
-    <title><?php echo $translations[$lang]['title']; ?></title>
-</head>
-<body>
-    <h1><?php echo $translations[$lang]['title']; ?></h1>
-    <h2><?php echo $translations[$lang]['contact_info']; ?></h2>
+<main>
+    <h1><?php echo $t['title']; ?></h1>
+    <h2><?php echo $t['contact_info']; ?></h2>
     <p>Email: <?php echo $contactEmail; ?></p>
     <p>Phone: <?php echo $contactPhone; ?></p>
     <p>Address: <?php echo $contactAddress; ?></p>
-    
-    <form action="send_contact.php" method="post">
-        <label><?php echo $translations[$lang]['name']; ?>:</label>
+    <form action="process-contact.php" method="post">
+        <label><?php echo $t['name']; ?>:</label>
         <input type="text" name="name" required>
-        
-        <label><?php echo $translations[$lang]['email']; ?>:</label>
+        <label><?php echo $t['email']; ?>:</label>
         <input type="email" name="email" required>
-        
-        <label><?php echo $translations[$lang]['message']; ?>:</label>
+        <label><?php echo $t['message']; ?>:</label>
         <textarea name="message" required></textarea>
-        
-        <button type="submit"><?php echo $translations[$lang]['send']; ?></button>
+        <button type="submit"><?php echo $t['send']; ?></button>
     </form>
-
-    <footer>
-        <a href="https://facebook.com">Facebook</a>
-        <a href="https://twitter.com">Twitter</a>
-        <a href="https://instagram.com">Instagram</a>
-    </footer>
-</body>
-</html>
+</main>
+<?php
+require_once __DIR__.'/includes/footer.php';
+?>
