@@ -1,20 +1,13 @@
-<?php
+// Updated code to handle language selection without echoing output
 
-function getLanguageFromURL() {
-    // Check if the 'lang' parameter is present in the URL
-    if (isset($_GET['lang'])) {
-        $lang = $_GET['lang'];
-        // Validate the language parameter (for example, only allow 'en' or 'es')
-        if (in_array($lang, ['en', 'es'])) {
-            return $lang;
-        }
+function handleLanguageSelection($selectedLanguage) {
+    // Your code logic here
+    // Handle language selection properly without echoing
+    if (in_array($selectedLanguage, $availableLanguages)) {
+        // Process the selected language
+        return $selectedLanguage;
+    } else {
+        // Handle invalid selection
+        return 'default';
     }
-    // Default language
-    return 'en';
 }
-
-// Usage example
-$currentLanguage = getLanguageFromURL();
-echo "Current Language: " . htmlspecialchars($currentLanguage);
-
-?>
