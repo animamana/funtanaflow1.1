@@ -1,8 +1,9 @@
 <?php
-// Get the selected language from the GET parameter, default to English
-$language = isset($_GET['lang']) ? $_GET['lang'] : 'en';
-
-// Translations array
+session_start();
+$lang = (isset($_GET['lang']) ? strtolower($_GET['lang']) : 'en');
+if (!in_array($lang, ['en','it','de'])) $lang = 'en';
+require_once __DIR__.'/includes/config.php';
+include __DIR__.'/includes/header.php';
 $translations = [
     'en' => [
         'title' => 'About Us',
@@ -20,27 +21,18 @@ $translations = [
         'select_language' => 'Sprache Wählen',
     ],
 ];
-
-// Get the current translation
-$translation = $translations[$language];
-
-// Display the About Us page
+$labels = $translations[$lang];
 ?>
-<!DOCTYPE html>
-<html lang="<?php echo $language; ?>">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $translation['title']; ?></title>
-</head>
-<body>
-    <h1><?php echo $translation['title']; ?></h1>
-    <p><?php echo $translation['content']; ?></p>
-    <h2><?php echo $translation['select_language']; ?></h2>
+<main>
+    <h1><?php echo $labels['title']; ?></h1>
+    <p><?php echo $labels['content']; ?></p>
+    <h2><?php echo $labels['select_language']; ?></h2>
     <ul>
         <li><a href="?lang=en">English</a></li>
         <li><a href="?lang=it">Italian</a></li>
         <li><a href="?lang=de">German</a></li>
     </ul>
-</body>
-</html>
+</main>
+<?php
+require_once __DIR__.'/includes/footer.php';
+?>
