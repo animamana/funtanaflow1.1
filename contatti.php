@@ -31,9 +31,9 @@ $translations = [
     ],
 ];
 $t = $translations[$lang];
-$contactEmail = "contact@example.com"; // TODO: Replace with real contact information
-$contactPhone = "+123456789"; // TODO: Replace with real contact information
-$contactAddress = "123 Address St, City, Country"; // TODO: Replace with real contact information
+$contactEmail = "contact@example.com"; // put your real email
+$contactPhone = "+123456789"; // put your real phone
+$contactAddress = "123 Address St, City, Country"; // put your real address
 ?>
 <main>
     <h1><?php echo $t['title']; ?></h1>

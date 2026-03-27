@@ -1,10 +1,4 @@
 <?php
-session_start();
-$lang = (isset($_GET['lang']) ? strtolower($_GET['lang']) : 'en');
-if (!in_array($lang, ['en', 'it', 'de'])) $lang = 'en';
-require_once __DIR__ . '/includes/config.php';
-include __DIR__ . '/includes/header.php';
-
 // Multilingual support for kayak rentals and lessons
 
 // Language array
@@ -23,12 +17,16 @@ $languages = array(
     )
 );
 
-$content = isset($languages[$lang]) ? $languages[$lang] : $languages['en'];
+// Function to get content based on selected language
+function getContent($lang) {
+    global $languages;
+    return isset($languages[$lang]) ? $languages[$lang] : $languages['en']; // Default to English
+}
+
+// Example usage
+$selected_lang = 'it'; // Dynamic selection based on user input
+$content = getContent($selected_lang);
 ?>
-<main>
-    <h1><?php echo $content['title']; ?></h1>
-    <p><?php echo $content['description']; ?></p>
-</main>
-<?php
-require_once __DIR__ . '/includes/footer.php';
-?>
+
+<h1><?php echo $content['title']; ?></h1>
+<p><?php echo $content['description']; ?></p>

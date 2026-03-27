@@ -1,14 +1,10 @@
 <?php
-// Footer partial - outputs footer HTML, JS scripts, and closes the document
+// This is the partial footer template
+
+function render_footer() {
+    echo '<footer>';
+    echo '    <p>Footer Content Here</p>';
+    echo '</footer>';
+}
+
 ?>
-<footer>
-    <p>&copy; <?php echo date('Y'); ?> Funtana Flow. All rights reserved.</p>
-</footer>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-</body>
-</html>
