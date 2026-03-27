@@ -1,4 +1,9 @@
 <?php
+session_start();
+$lang = (isset($_GET['lang']) ? strtolower($_GET['lang']) : 'en');
+if (!in_array($lang, ['en', 'it', 'de'])) $lang = 'en';
+require_once __DIR__ . '/includes/config.php';
+include __DIR__ . '/includes/header.php';
 
 $multilingual_content = [
     'it' => [
@@ -21,4 +26,14 @@ $multilingual_content = [
     ],
 ];
 
+$c = isset($multilingual_content[$lang]) ? $multilingual_content[$lang] : $multilingual_content['en'];
+?>
+<main>
+    <h1><?php echo $c['title']; ?></h1>
+    <p><?php echo $c['tharros']; ?></p>
+    <p><?php echo $c['monteprama']; ?></p>
+    <p><?php echo $c['san_salvatore']; ?></p>
+</main>
+<?php
+require_once __DIR__ . '/includes/footer.php';
 ?>

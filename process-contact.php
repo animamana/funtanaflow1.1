@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // If there are no validation errors, proceed to send email
     if (empty($errors)) {
-        $to = 'your-email@example.com'; // Change this to your recipient email
+        $to = 'your-email@example.com'; // TODO: Replace with real contact information
         $subject = 'New Contact Form Submission';
         $body = "Name: $name\nEmail: $email\n\nMessage:\n$message";
         $headers = "From: $email";
